@@ -31,7 +31,7 @@ const CurrentForecast = () => {
   } = currentForecast;
   console.log(currentForecast);
   return (
-    <Container>
+    <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
           <Typography variant='h4'>{location}</Typography>
@@ -62,7 +62,7 @@ const CurrentForecast = () => {
         <Typography>Pressure: {pressure} hPa</Typography>
         <Typography>Visibility: {visibility} m</Typography>
       </Box>
-    </Container>
+    </Box>
   );
 };
 
