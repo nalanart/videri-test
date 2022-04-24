@@ -1,4 +1,7 @@
-import { getDayFromUnixTimestamp } from '../../utils/openWeatherMap';
+import {
+  getDayFromUnixTimestamp,
+  getWeatherIconUrl,
+} from '../../utils/openWeatherMap';
 import { Box, Typography } from '@mui/material';
 
 const ForecastCard = ({ day }) => {
@@ -23,7 +26,8 @@ const ForecastCard = ({ day }) => {
         {getDayFromUnixTimestamp(dt).toUpperCase()}
       </Typography>
       <img
-        src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+        src={getWeatherIconUrl(day.weather[0].icon)}
+        alt={day.weather[0].main}
       />
       <Typography>{day.weather[0].main}</Typography>
       <Typography>High: {max}</Typography>
