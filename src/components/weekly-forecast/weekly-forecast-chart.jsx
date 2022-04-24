@@ -6,7 +6,7 @@ import { getDayFromUnixTimestamp } from '../../utils/openWeatherMap';
 
 import { Box, Typography } from '@mui/material';
 
-const WeeklyForecastChart = ({ data }) => {
+const WeeklyForecastChart = ({ data, height }) => {
   const svgRef = useRef();
   const tooltipRef = useRef();
   const dayRef = useRef();
@@ -42,7 +42,6 @@ const WeeklyForecastChart = ({ data }) => {
   };
 
   const drawGraph = () => {
-    const height = 300;
     const dailyForecastArray = data.daily;
     const minTempArray = Array.from(dailyForecastArray, (day) => day.temp.min);
     const maxTempArray = Array.from(dailyForecastArray, (day) => day.temp.max);

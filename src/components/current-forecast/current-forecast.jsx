@@ -1,15 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getWeatherIconUrl } from '../../utils/openWeatherMap';
-import WEATHER_DATA from '../../weather.json';
 
-import {
-  Box,
-  Button,
-  Collapse,
-  Container,
-  Popover,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Collapse, Typography } from '@mui/material';
 
 const CurrentForecast = ({ data }) => {
   const [open, setOpen] = useState(false);
@@ -17,7 +9,6 @@ const CurrentForecast = ({ data }) => {
   const handleMoreDetailsClick = () => setOpen(!open);
 
   if (data) {
-    console.log(data);
     const {
       location,
       current: { temp, wind_speed, humidity, pressure, visibility, weather },

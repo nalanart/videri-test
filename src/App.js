@@ -14,7 +14,6 @@ const App = () => {
   useEffect(() => {
     const getWeatherData = async () => {
       const data = await (await fetch(url)).json();
-      console.log(data);
       setData({
         ...data,
         location,
