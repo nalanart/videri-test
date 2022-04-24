@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import * as d3 from 'd3';
 
@@ -6,19 +6,46 @@ import { getDayFromUnixTimestamp } from '../../utils/openWeatherMap';
 
 import { Box, Typography } from '@mui/material';
 
-const WeeklyForecastChart = ({ data, height, width }) => {
-  const dailyForecastArray = data.daily;
-  const minTempArray = Array.from(dailyForecastArray, (day) => day.temp.min);
-  const maxTempArray = Array.from(dailyForecastArray, (day) => day.temp.max);
-
+const WeeklyForecastChart = ({ data }) => {
   const svgRef = useRef();
   const tooltipRef = useRef();
   const dayRef = useRef();
   const weatherRef = useRef();
   const highRef = useRef();
   const lowRef = useRef();
+  const containerRef = useRef();
+
+  const [width, setWidth] = useState();
+
+  useEffect(() => {
+    handleResize();
+    // could use a debouncer to prevent too many redrawings of the chart while resizing
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    wipeGraph();
+    if (data) drawGraph();
+  }, [data, width]);
+
+  const handleResize = () => {
+    const styles = window.getComputedStyle(containerRef.current);
+    setWidth(
+      containerRef.current.clientWidth -
+        parseFloat(styles.paddingLeft) -
+        parseFloat(styles.paddingRight)
+    );
+  };
 
   const drawGraph = () => {
+    const height = 300;
+    const dailyForecastArray = data.daily;
+    const minTempArray = Array.from(dailyForecastArray, (day) => day.temp.min);
+    const maxTempArray = Array.from(dailyForecastArray, (day) => day.temp.max);
     const r = 4;
 
     const yMin = d3.min(minTempArray);
@@ -143,13 +170,8 @@ const WeeklyForecastChart = ({ data, height, width }) => {
     d3.select(svgRef.current).selectAll('*').remove();
   };
 
-  useEffect(() => {
-    wipeGraph();
-    drawGraph();
-  }, [width]);
-
   return (
-    <Box sx={{ pr: 10, mb: 5, position: 'relative' }}>
+    <Box sx={{ pr: 10, mb: 5, position: 'relative' }} ref={containerRef}>
       <Box
         ref={tooltipRef}
         sx={{
