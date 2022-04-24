@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react';
 import { getWeatherIconUrl } from '../../utils/openWeatherMap';
 import WEATHER_DATA from '../../weather.json';
 
-import { Box, Button, Container, Popover, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Collapse,
+  Container,
+  Popover,
+  Typography,
+} from '@mui/material';
 
 const lat = 45.5088;
 const lon = -73.5878;
@@ -50,18 +57,14 @@ const CurrentForecast = () => {
           </Button>
         </Box>
       </Box>
-      <Box
-        sx={{
-          display: open ? 'flex' : 'none',
-          gap: 2,
-          transform: 'transition ease-in',
-        }}
-      >
-        <Typography>Wind Speed: {wind_speed} m/s</Typography>
-        <Typography>Humidity: {humidity}%</Typography>
-        <Typography>Pressure: {pressure} hPa</Typography>
-        <Typography>Visibility: {visibility} m</Typography>
-      </Box>
+      <Collapse in={open}>
+        <Box>
+          <Typography>Wind Speed: {wind_speed} m/s</Typography>
+          <Typography>Humidity: {humidity}%</Typography>
+          <Typography>Pressure: {pressure} hPa</Typography>
+          <Typography>Visibility: {visibility} m</Typography>
+        </Box>
+      </Collapse>
     </Box>
   );
 };

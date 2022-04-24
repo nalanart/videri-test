@@ -1,21 +1,24 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ForecastCard from '../forecast-card/forecast-card';
 
 const WeeklyForecast = ({ data }) => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        gap: 2,
-      }}
-    >
-      {data.daily.slice(1).map((day, index) => (
-        <Box key={index} sx={{ flex: '1 1 0' }}>
-          <ForecastCard day={day} />
-        </Box>
-      ))}
-    </Box>
+    <>
+      <Typography variant='h5'>Next 7 days</Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          overflow: 'auto',
+          paddingBlock: 2,
+          mb: 5,
+        }}
+      >
+        {data.daily.slice(1).map((day, index) => (
+          <ForecastCard key={index} day={day} />
+        ))}
+      </Box>
+    </>
   );
 };
 

@@ -1,20 +1,5 @@
+import { getDayFromUnixTimestamp } from '../../utils/openWeatherMap';
 import { Box, Typography } from '@mui/material';
-
-const daysMap = {
-  0: 'Sun',
-  1: 'Mon',
-  2: 'Tue',
-  3: 'Wed',
-  4: 'Thu',
-  5: 'Fri',
-  6: 'Sat',
-};
-
-const getDayFromUnixTimestamp = (unixTimestamp) => {
-  const date = new Date(unixTimestamp * 1000);
-  const day = date.getDay();
-  return daysMap[day];
-};
 
 const ForecastCard = ({ day }) => {
   const {
@@ -25,6 +10,8 @@ const ForecastCard = ({ day }) => {
   return (
     <Box
       sx={{
+        flex: '1 1 0',
+        border: '1px solid #efefef',
         boxShadow: '0 3px 6px #00000029',
         padding: 2,
         display: 'flex',
@@ -41,7 +28,7 @@ const ForecastCard = ({ day }) => {
       <Typography>{day.weather[0].main}</Typography>
       <Typography>High: {max}</Typography>
       <Typography>Low: {min}</Typography>
-      <Typography>Precipitation: {pop}</Typography>
+      <Typography>Pop: {pop}</Typography>
     </Box>
   );
 };
