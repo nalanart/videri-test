@@ -6,11 +6,11 @@ import WeeklyForecastChart from '../../components/weekly-forecast/weekly-forecas
 
 const Home = ({ data }) => {
   return (
-    <Container maxWidth='xl' sx={{ paddingBlock: 5 }}>
+    <Container maxWidth='lg' sx={{ paddingBlock: 5 }}>
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          gridTemplateColumns: { sm: 'repeat(2, minmax(0, 1fr))' },
           gap: 2,
           mb: 5,
         }}
