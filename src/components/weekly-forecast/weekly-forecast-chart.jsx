@@ -170,7 +170,7 @@ const WeeklyForecastChart = ({ data, height }) => {
   };
 
   return (
-    <Box sx={{ pr: 10, mb: 5, position: 'relative' }} ref={containerRef}>
+    <Box sx={{ px: 2, mb: 5, position: 'relative' }} ref={containerRef}>
       <Box
         ref={tooltipRef}
         sx={{
