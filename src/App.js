@@ -5,8 +5,8 @@ const lat = 45.5088;
 const lon = -73.5878;
 const location = 'Montréal, Québec';
 const units = 'metric';
-const apiKey = 'c1ed4ecad7eed7cd47d23a9dee45dee3';
-const url = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+const OPEN_WEATHER_API_KEY = 'c1ed4ecad7eed7cd47d23a9dee45dee3';
+const url = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${OPEN_WEATHER_API_KEY}`;
 
 const App = () => {
   const [data, setData] = useState(null);

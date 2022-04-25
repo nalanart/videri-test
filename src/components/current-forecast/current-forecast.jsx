@@ -14,7 +14,7 @@ const CurrentForecast = ({ data }) => {
       current: { temp, wind_speed, humidity, pressure, visibility, weather },
     } = data;
     return (
-      <Paper sx={{ padding: 2, mb: 5 }}>
+      <Paper sx={{ padding: 2 }}>
         <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
           <Box
             sx={{
@@ -38,7 +38,7 @@ const CurrentForecast = ({ data }) => {
               height='100'
             />
             <Box sx={{ textAlign: { sm: 'right' } }}>
-              <Typography variant='h1'>{temp} °C</Typography>
+              <Typography variant='h2'>{temp} °C</Typography>
               <Typography>Low of {data.daily[0].temp.min} °C</Typography>
               <Typography>High of {data.daily[0].temp.max} °C</Typography>
             </Box>
